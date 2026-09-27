@@ -4,6 +4,37 @@ AI Director is a Swift-first studio automation project for using AI to orchestra
 
 The goal is an end-to-end workflow where Claude, ChatGPT, or another model provides high-level creative and production intent, while Swift performs deterministic control of the studio.
 
+
+## Current Implementation Status
+
+Development has started on `feature/initial-swift-foundation`.
+
+Implemented in the first code slice:
+
+- Swift Package Manager project targeting macOS 14+
+- `StudioCore`, `OBSKit`, `StudioDirector`, `AIKit`, and `RecordingKit` targets
+- Initial domain models: `StudioState`, `SceneRole`, `CameraShot`, `RGBColor`, and `ColorPalette`
+- Typed OBS WebSocket v5 envelopes for Hello, Identify, Identified, Request, RequestResponse, and Event
+- Actor-based `OBSWebSocketClient` transport skeleton using `URLSessionWebSocketTask`
+- Unit tests for domain-model serialization and OBS protocol encoding/decoding
+- GitHub Actions workflow running `swift build` and `swift test` on macOS
+- `Docs/ARCHITECTURE.md` describing the implemented architecture and immediate next work
+
+Local validation was performed with Swift 6.2.1. The current test suite passes 7 tests.
+
+Not implemented yet:
+
+- OBS Hello/Identify handshake orchestration
+- OBS authentication challenge hashing
+- request/response correlation
+- typed OBS operations such as GetVersion and GetSceneList
+- live OBS integration tests
+- SwiftUI
+- AI provider integration
+- Resolve integration
+
+The next implementation target is completing the OBS WebSocket v5 handshake and request-correlation layer.
+
 ## Vision
 
 A typical workflow should eventually look like this:
