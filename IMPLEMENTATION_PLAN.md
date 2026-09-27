@@ -8,6 +8,53 @@ The README describes the product vision. This file defines **how to build it**.
 
 ---
 
+
+# Implementation Status
+
+Last updated: initial Swift foundation branch.
+
+## Completed
+
+- [x] Create Swift Package Manager project.
+- [x] Create StudioCore target.
+- [x] Create OBSKit target.
+- [x] Create StudioDirector target.
+- [x] Create AIKit target.
+- [x] Create RecordingKit target.
+- [x] Create StudioCore and OBSKit test targets.
+- [x] Add macOS GitHub Actions build/test workflow.
+- [x] Implement StudioState.
+- [x] Implement SceneRole.
+- [x] Implement CameraShot.
+- [x] Implement RGBColor.
+- [x] Implement ColorPalette.
+- [x] Implement OBS Hello DTOs.
+- [x] Implement OBS Identify DTOs.
+- [x] Implement OBS Identified DTOs.
+- [x] Implement OBS Request DTOs.
+- [x] Implement OBS RequestResponse DTOs.
+- [x] Implement OBS Event DTOs.
+- [x] Add actor-based OBSWebSocketClient transport skeleton.
+- [x] Add protocol/domain encoding and decoding tests.
+- [x] Validate current package locally with `swift test` — 7 tests passing.
+
+## In Progress / Next
+
+- [ ] Decode and route incoming OBS opcodes in OBSWebSocketClient.
+- [ ] Implement Hello -> Identify -> Identified handshake state machine.
+- [ ] Implement OBS authentication challenge hashing.
+- [ ] Add request ID correlation with checked continuations.
+- [ ] Add request timeout handling.
+- [ ] Add event delivery mechanism.
+- [ ] Add typed GetVersion and GetSceneList operations.
+- [ ] Add optional live OBS integration test gated by environment variable.
+
+## Known Limitations
+
+The current `OBSWebSocketClient` establishes a WebSocket task and can encode/send JSON, but it does not yet complete OBS protocol negotiation. Its `connected` state currently means the WebSocket task has been resumed, not that OBS has completed the Identified handshake.
+
+---
+
 # 1. Project Goal
 
 Build a Swift-first macOS application that uses AI to orchestrate a video-production workflow built around:
